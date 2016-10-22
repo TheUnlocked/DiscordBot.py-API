@@ -1,14 +1,14 @@
 import json
 import traceback
 import urllib.request
-from Events.Commands.CommandBase import CommandBase
+from Modules.Commands.CommandBase import CommandBase
 from discord import Message, Client
-import Events.Commands.CommandPerms as CommandPerm
+import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
 
 
 class CommandDictionary(CommandBase):
-    command_names = ['definition', 'define', 'def']
+    command_names = ['definition', 'define']
 
     def valid_usage(self, args: []):
         return len(args) == 1 and args[0].isalpha()

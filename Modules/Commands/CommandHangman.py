@@ -4,10 +4,10 @@ import time
 
 from discord import Message, Client, Channel
 
-import Events.Commands.CommandPerms as CommandPerm
+import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
-from Events.Commands.CommandBase import CommandBase
-from Events.InterfaceEvent import InterfaceClientTick
+from Modules.Commands.CommandBase import CommandBase
+from Modules.InterfaceEvent import InterfaceClientTick
 
 
 class CommandHangman(CommandBase, InterfaceClientTick):

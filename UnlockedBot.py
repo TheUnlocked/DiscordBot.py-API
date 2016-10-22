@@ -6,7 +6,7 @@ from fnmatch import fnmatch
 
 from discord import Member, Message, Channel, Client
 
-from Events.InterfaceEvent import *
+from Modules.InterfaceEvent import *
 
 BOT_NAME = "UnlockedBot"
 client = Client()
@@ -112,7 +112,7 @@ async def other_tasks():
             async_tasks.remove(task)
 
 
-dir_path = os.path.dirname(os.path.realpath(__file__)) + "\\Events"
+dir_path = os.path.dirname(os.path.realpath(__file__)) + "\\Modules"
 pattern = "*.py"
 
 for path, subdirs, files in os.walk(dir_path):

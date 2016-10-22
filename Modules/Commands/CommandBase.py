@@ -2,9 +2,9 @@ import traceback
 
 from discord import Message, Client, Forbidden
 
-import Events.Commands.CommandPerms as CommandPerm
+import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
-from Events.InterfaceEvent import InterfaceMessageEvent
+from Modules.InterfaceEvent import InterfaceMessageEvent
 
 
 class CommandBase(InterfaceMessageEvent):

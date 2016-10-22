@@ -6,10 +6,10 @@ from enum import Enum
 
 from discord import Message, Client, Server, Member
 
-import Events.Commands.CommandPerms as CommandPerm
+import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
-from Events.Commands.CommandBase import CommandBase
-from Events.InterfaceEvent import InterfaceClientTick
+from Modules.Commands.CommandBase import CommandBase
+from Modules.InterfaceEvent import InterfaceClientTick
 from Helper import TempTextChannel
 
 games = []

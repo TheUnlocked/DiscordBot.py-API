@@ -1,7 +1,7 @@
-from Events.Commands.CommandBase import CommandBase
+from Modules.Commands.CommandBase import CommandBase
 from discord import Message, Client
 
-import Events.Commands.CommandPerms as CommandPerm
+import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
 
 
