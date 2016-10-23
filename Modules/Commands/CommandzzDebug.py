@@ -32,5 +32,5 @@ class CommandDebug(CommandBase):
             msg += "‌"  # Uses ‌ character
             await Ulb.send_message(message.channel, msg)
 
-    def __init__(self, client: Client):
-        super(CommandDebug, self).__init__(client)
+    def __init__(self):
+        super(CommandDebug, self).__init__()

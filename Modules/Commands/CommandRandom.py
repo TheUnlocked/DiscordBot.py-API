@@ -39,8 +39,8 @@ class CommandRandom(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Positive values only."
 
-    def __init__(self, client: Client):
-        super(CommandRandom, self).__init__(client)
+    def __init__(self):
+        super(CommandRandom, self).__init__()
 
 
 class CommandRoll(CommandBase):
@@ -77,8 +77,8 @@ class CommandRoll(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Start value defaults to 1."
 
-    def __init__(self, client: Client):
-        super(CommandRoll, self).__init__(client)
+    def __init__(self):
+        super(CommandRoll, self).__init__()
 
 
 class CommandCoinflip(CommandBase):
@@ -100,5 +100,5 @@ class CommandCoinflip(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Start value defaults to 1."
 
-    def __init__(self, client: Client):
-        super(CommandCoinflip, self).__init__(client)
+    def __init__(self):
+        super(CommandCoinflip, self).__init__()

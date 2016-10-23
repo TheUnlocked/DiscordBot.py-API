@@ -23,5 +23,5 @@ class CommandLmgtfy(CommandBase):
     async def command_action(self, message: Message, args: []):
         await Ulb.send_message(message.channel, "http://lmgtfy.com/?q={0}".format('+'.join(args)), message.author)
 
-    def __init__(self, client: Client):
-        super(CommandLmgtfy, self).__init__(client)
+    def __init__(self):
+        super(CommandLmgtfy, self).__init__()

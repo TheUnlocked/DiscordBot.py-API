@@ -7,10 +7,10 @@ from discord import Message, Client, Channel
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
 from Modules.Commands.CommandBase import CommandBase
-from Modules.InterfaceEvent import InterfaceClientTick
+from Modules.InterfaceEvent import InterfaceOnClientTick
 
 
-class CommandHangman(CommandBase, InterfaceClientTick):
+class CommandHangman(CommandBase, InterfaceOnClientTick):
     command_names = ['hangman', 'hg']
 
     def valid_usage(self, args: []):
@@ -146,5 +146,5 @@ class CommandHangman(CommandBase, InterfaceClientTick):
                                    "No one has done anything for a while so the game of hangman has reset.")
             self.hangman_reset()
 
-    def __init__(self, client: Client):
-        super(CommandHangman, self).__init__(client)
+    def __init__(self):
+        super(CommandHangman, self).__init__()

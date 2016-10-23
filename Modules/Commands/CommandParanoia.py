@@ -27,5 +27,5 @@ class CommandParanoia(CommandBase):
     def get_action_as_string(self):
         return "A game of paranoia and secret paranoia."
 
-    def __init__(self, client: Client):
-        super(CommandParanoia, self).__init__(client)
+    def __init__(self):
+        super(CommandParanoia, self).__init__()

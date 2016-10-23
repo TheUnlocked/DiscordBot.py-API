@@ -68,7 +68,7 @@ async def stop_bot():
 @client.event
 async def on_message(message: Message):
     for message_event in event_effectors:
-        if isinstance(message_event, InterfaceMessageEvent):
+        if isinstance(message_event, InterfaceOnMessage):
             try:
                 await message_event.on_message(message)
             except:
@@ -79,7 +79,7 @@ async def on_message(message: Message):
 @client.event
 async def on_voice_state_update(before: Member, after: Member):
     for voice_event in event_effectors:
-        if isinstance(voice_event, InterfaceVoiceEvent):
+        if isinstance(voice_event, OnVoiceStateUpdate):
             try:
                 await voice_event.on_voice_state_update(before, after)
             except:
@@ -96,7 +96,7 @@ async def client_tick_start():
 
 async def client_tick():
     for tick_listeners in event_effectors:
-        if isinstance(tick_listeners, InterfaceClientTick):
+        if isinstance(tick_listeners, InterfaceOnClientTick):
             try:
                 await tick_listeners.on_client_tick()
             except:
@@ -123,7 +123,7 @@ for path, subdirs, files in os.walk(dir_path):
             for mem_name, obj in inspect.getmembers(module):
                 if inspect.isclass(obj) and inspect.getmodule(obj) is module and issubclass(obj, InterfaceEvent):
                     try:
-                        event_effectors.append(obj(client))
+                        event_effectors.append(obj())
                     except:
                         pass
 

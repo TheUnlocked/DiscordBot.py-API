@@ -44,5 +44,5 @@ class CommandHelp(CommandBase):
                     return
             await Ulb.send_message(message.channel, "`Help for '" + args[0] + "' not found`", message.author)
 
-    def __init__(self, client: Client):
-        super(CommandHelp, self).__init__(client)
+    def __init__(self):
+        super(CommandHelp, self).__init__()

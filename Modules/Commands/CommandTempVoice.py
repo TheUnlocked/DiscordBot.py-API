@@ -4,10 +4,10 @@ from discord import Message, Client, Member
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
 from Modules.Commands.CommandBase import CommandBase
-from Modules.InterfaceEvent import InterfaceVoiceEvent
+from Modules.InterfaceEvent import OnVoiceStateUpdate
 
 
-class CommandTempVoice(CommandBase, InterfaceVoiceEvent):
+class CommandTempVoice(CommandBase, OnVoiceStateUpdate):
     command_names = ['tempvoice']
 
     def valid_usage(self, args: []):
@@ -47,5 +47,5 @@ class CommandTempVoice(CommandBase, InterfaceVoiceEvent):
             if len(before_vc.voice_members) == 0:
                 await Ulb.client.delete_channel(before_vc)
 
-    def __init__(self, client: Client):
-        super(CommandTempVoice, self).__init__(client)
+    def __init__(self):
+        super(CommandTempVoice, self).__init__()

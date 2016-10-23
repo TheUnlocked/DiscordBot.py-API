@@ -4,10 +4,10 @@ from discord import Message, Client, Forbidden
 
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
-from Modules.InterfaceEvent import InterfaceMessageEvent
+from Modules.InterfaceEvent import InterfaceOnMessage
 
 
-class CommandBase(InterfaceMessageEvent):
+class CommandBase(InterfaceOnMessage):
     command_names = []
 
     def valid_usage(self, args: []):
@@ -42,5 +42,5 @@ class CommandBase(InterfaceMessageEvent):
     def get_action_as_string(self):
         raise NotImplementedError("This command has no action")
 
-    def __init__(self, client: Client):
-        super(CommandBase, self).__init__(client)
+    def __init__(self):
+        super(CommandBase, self).__init__()

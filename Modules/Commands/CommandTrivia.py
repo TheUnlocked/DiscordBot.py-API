@@ -9,17 +9,17 @@ from discord import Message, Client, Server, Member
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
 from Modules.Commands.CommandBase import CommandBase
-from Modules.InterfaceEvent import InterfaceClientTick
+from Modules.InterfaceEvent import InterfaceOnClientTick
 from Helper import TempTextChannel
 
 games = []
 
 
-class CommandTrivia(CommandBase, InterfaceClientTick):
+class CommandTrivia(CommandBase, InterfaceOnClientTick):
     command_names = ['trivia']
 
-    def __init__(self, client: Client):
-        super(CommandTrivia, self).__init__(client)
+    def __init__(self):
+        super(CommandTrivia, self).__init__()
 
     def valid_usage(self, args: []):
         return (len(args) == 1 and args[0] == "tt") or \

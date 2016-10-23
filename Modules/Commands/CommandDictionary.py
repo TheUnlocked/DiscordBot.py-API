@@ -44,5 +44,5 @@ class CommandDictionary(CommandBase):
     def get_action_as_string(self):
         return "Gets the definition of the searched word"
 
-    def __init__(self, client: Client):
-        super(CommandDictionary, self).__init__(client)
+    def __init__(self):
+        super(CommandDictionary, self).__init__()
