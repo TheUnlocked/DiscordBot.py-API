@@ -2,12 +2,12 @@ import os
 import random
 import time
 
-from discord import Message, Client, Channel
+from discord import Message, Channel
 
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
+from InterfaceEvent import InterfaceOnClientTick
 from Modules.Commands.CommandBase import CommandBase
-from Modules.InterfaceEvent import InterfaceOnClientTick
 
 
 class CommandHangman(CommandBase, InterfaceOnClientTick):

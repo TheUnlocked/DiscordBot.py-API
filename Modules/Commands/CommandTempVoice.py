@@ -1,10 +1,10 @@
 import discord
-from discord import Message, Client, Member
+from discord import Message, Member
 
 import Modules.Commands.CommandPerms as CommandPerm
 import UnlockedBot as Ulb
+from InterfaceEvent import OnVoiceStateUpdate
 from Modules.Commands.CommandBase import CommandBase
-from Modules.InterfaceEvent import OnVoiceStateUpdate
 
 
 class CommandTempVoice(CommandBase, OnVoiceStateUpdate):

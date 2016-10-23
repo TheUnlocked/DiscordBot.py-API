@@ -6,7 +6,7 @@ from fnmatch import fnmatch
 
 from discord import Member, Message, Channel, Client
 
-from Modules.InterfaceEvent import *
+from InterfaceEvent import *
 
 BOT_NAME = "UnlockedBot"
 client = Client()
