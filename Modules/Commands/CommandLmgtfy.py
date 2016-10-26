@@ -2,7 +2,7 @@ from Modules.Commands.CommandBase import CommandBase
 from discord import Message, Client
 
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 
 
 class CommandLmgtfy(CommandBase):

@@ -1,7 +1,7 @@
 from Modules.Commands.CommandBase import CommandBase
 from discord import Message, Client
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 
 
 class CommandDebug(CommandBase):
@@ -31,6 +31,13 @@ class CommandDebug(CommandBase):
                 msg += "\n"
             msg += "‌"  # Uses ‌ character
             await Ulb.send_message(message.channel, msg)
+
+        # DO NOT UNCOMMENT THIS UNLESS YOU ARE CURRENTLY BUGTESTING!
+        # if args[0] == "exec":
+        #     template = 'async def tmp():\n  {0}\n'
+        #     d = dict(locals(), **globals())
+        #     exec(template.format("  ".join(" ".join(args[1:]).split(".."))), d, d)
+        #     await eval("tmp", d, d)()
 
     def __init__(self):
         super(CommandDebug, self).__init__()

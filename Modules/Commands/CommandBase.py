@@ -3,7 +3,7 @@ import traceback
 from discord import Message, Forbidden
 
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 from InterfaceEvent import InterfaceOnMessage
 
 

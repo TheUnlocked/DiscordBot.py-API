@@ -7,7 +7,7 @@ from enum import Enum
 from discord import Message, Server, Member
 
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 from Helper import TempTextChannel
 from InterfaceEvent import InterfaceOnClientTick
 from Modules.Commands.CommandBase import CommandBase
@@ -84,7 +84,7 @@ class TriviaGame:
             self.players[player.name]["member"] = player
         self.game_mode = mode
         self.game_id = game_id
-        Ulb.async_tasks.append({'func': self.set_channel, 'args': [server, users]})
+        Ulb.add_async_task(self.set_channel, [server, users])
 
     async def set_channel(self, args: []):
         self.channel = await TempTextChannel.new_text_channel(args[0], "trivia" + str(self.game_id), args[1])

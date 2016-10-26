@@ -1,7 +1,7 @@
 from Modules.Commands.CommandBase import CommandBase
 from discord import Message, Client
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 
 
 class CommandHelp(CommandBase):
@@ -26,7 +26,7 @@ class CommandHelp(CommandBase):
 
     async def command_action(self, message: Message, args: []):
         if len(args) == 0:
-            commands = filter(lambda x: isinstance(x, CommandBase) and not x.beta, Ulb.event_effectors)
+            commands = filter(lambda x: isinstance(x, CommandBase) and not x.beta, Ulb.module_events)
             printout = '\n`' + self.format_spacing("Command | alias") +\
                        self.format_spacing("Permissions", self.padding) + '`'
             printout += '\n`' + ''.join(['-'] * (self.padding + self.padding)) + '`'
@@ -35,7 +35,7 @@ class CommandHelp(CommandBase):
                             + self.format_spacing(command.valid_perms().name, self.padding) + '`'
             await Ulb.send_message(message.channel, printout, message.author)
         if len(args) == 1:
-            commands = filter(lambda x: isinstance(x, CommandBase), Ulb.event_effectors)
+            commands = filter(lambda x: isinstance(x, CommandBase), Ulb.module_events)
             for command in commands:
                 if args[0] in command.command_names:
                     printout = "\n`Found help for '" + args[0] + "'`\nUsage: " + command.get_usage_as_string() + '\n' +\

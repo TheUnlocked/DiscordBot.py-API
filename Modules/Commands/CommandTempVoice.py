@@ -2,7 +2,7 @@ import discord
 from discord import Message, Member
 
 import Modules.Commands.CommandPerms as CommandPerm
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 from InterfaceEvent import OnVoiceStateUpdate
 from Modules.Commands.CommandBase import CommandBase
 

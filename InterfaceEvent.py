@@ -40,7 +40,7 @@ class InterfaceOnSocketRawReceive(InterfaceEvent):
 
 
 class InterfaceOnSocketRawSend(InterfaceEvent):
-    async def on_socket_raw_send(self, msg):
+    async def on_socket_raw_send(self, payload):
         raise NotImplementedError("This does not exist yet")
 
 
@@ -135,7 +135,7 @@ class OnVoiceStateUpdate(InterfaceEvent):
 
 
 class InterfaceOnMemberBan(InterfaceEvent):
-    async def on_member_ban(self, server: discord.Server, user: discord.User):
+    async def on_member_ban(self, member: discord.Member):
         raise NotImplementedError("This does not exist yet")
 
 
