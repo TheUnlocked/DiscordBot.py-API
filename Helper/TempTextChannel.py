@@ -1,5 +1,5 @@
 import discord
-import UnlockedBot as Ulb
+import DiscordBot as Ulb
 
 
 async def new_text_channel(server: discord.Server, channel_name: str, users: []):
