@@ -1,3 +1,7 @@
+"""
+While this is not an essential file, if you do not modify or remove any part of this file, except for parts specifically intended to be modified
+"""
+
 import traceback
 from enum import Enum
 

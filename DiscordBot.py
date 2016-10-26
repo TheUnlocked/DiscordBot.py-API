@@ -1,3 +1,7 @@
+"""
+THIS IS AN ESSENTIAL FILE. DO NOT MODIFY OR REMOVE IT UNLESS SPECIFIED BY OTHER DOCUMENTATION.
+"""
+
 import asyncio
 import imp
 import inspect
@@ -33,7 +37,17 @@ from discord.voice_client import *
 
 from InterfaceEvent import *
 
+"""
+Change this to the name of your bot.
+"""
 BOT_NAME = "UnlockedBot"
+
+"""
+This is the info used in the info command. Modify it for your bot.
+"""
+INFO = "`UnlockedBot beta m1` by Unlocked\n" \
+       "All modules written by Unlocked"
+
 client = Client()
 loop = asyncio.get_event_loop()
 watch_channels = []
@@ -351,9 +365,9 @@ async def on_client_tick():
 
 async def send_message(channel: Channel, msg: str, mention: Member = None):
     if mention is None:
-        await client.send_message(channel, msg)
+        await client.send_message(channel, u'\u200B' + msg)
     else:
-        await client.send_message(channel, mention.mention + ' ' + msg)
+        await client.send_message(channel, u'\u200B' + mention.mention + ' ' + msg)
 
 
 async def run_bot():
