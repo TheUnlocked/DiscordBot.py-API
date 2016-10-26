@@ -19,7 +19,7 @@ class CommandInfo(CommandBase):
         return '`info'
 
     def valid_perms(self):
-        return CommandPerm.SEND_MESSAGES
+        return CommandPerm.NONE
 
     def get_action_as_string(self):
         return 'Bot info command'
@@ -30,7 +30,9 @@ class CommandInfo(CommandBase):
                   "`discord.py v0.13.0`\n" \
                   "`DiscordBot.py-API beta m1`\n" \
                   "This bot is running on DiscordBot.py-API by Unlocked, which uses Rapptz's discord.py API wrapper. " \
-                  "Both are open source and can be found on GitHub."
+                  "Both are open source and can be found on GitHub.\n" \
+                  "'https://github.com/Rapptz/discord.py'\n" \
+                  "'https://github.com/TheUnlocked/DiscordBot.py-API'"
         await Ulb.send_message(message.channel, msg)
 
     def __init__(self):
