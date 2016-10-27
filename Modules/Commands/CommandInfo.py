@@ -28,7 +28,7 @@ class CommandInfo(CommandBase):
         msg = Ulb.INFO + \
                   "\n\n" \
                   "`discord.py v0.13.0`\n" \
-                  "`DiscordBot.py-API beta m1`\n" \
+                  "`DiscordBot.py-API m2`\n" \
                   "This bot is running on DiscordBot.py-API by Unlocked, which uses Rapptz's discord.py API wrapper. " \
                   "Both are open source and can be found on GitHub.\n" \
                   "'https://github.com/Rapptz/discord.py'\n" \
