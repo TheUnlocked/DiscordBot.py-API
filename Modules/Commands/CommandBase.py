@@ -7,9 +7,9 @@ from enum import Enum
 
 from discord import Message, Forbidden
 
-import Modules.Commands.CommandPerms as CommandPerm
 import DiscordBot as Ulb
-from InterfaceEvent import InterfaceOnMessage
+import Modules.Commands.CommandPerms as CommandPerm
+from fml.InterfaceEvent import InterfaceOnMessage
 
 
 class CommandTriggerType(Enum):
