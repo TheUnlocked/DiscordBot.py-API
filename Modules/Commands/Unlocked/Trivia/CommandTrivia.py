@@ -16,10 +16,10 @@ games = []
 
 
 class CommandTrivia(CommandBase, InterfaceOnClientTick):
-    command_names = ['trivia']
-
     def __init__(self):
         super(CommandTrivia, self).__init__()
+        self.command_names = ['trivia']
+        self.module_id = "0001_1007"
 
     def valid_usage(self, args: []):
         return (len(args) == 1 and args[0] == "tt") or \

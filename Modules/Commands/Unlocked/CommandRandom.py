@@ -14,7 +14,10 @@ def is_int(s):
 
 
 class CommandRandom(CommandBase):
-    command_names = ['random', 'rand']
+    def __init__(self):
+        super(CommandRandom, self).__init__()
+        self.module_id = "0001_1000"
+        self.command_names = ['random', 'rand']
 
     def valid_usage(self, args: []):
         num_args = 0
@@ -26,7 +29,7 @@ class CommandRandom(CommandBase):
         return num_args == 1 or (num_args == 2 and int(args[0]) < int(args[1]))
 
     def get_usage_as_string(self):
-        return "`random|rand [start:1] <end>"
+        return "random|rand [start:1] <end>"
 
     def valid_perms(self):
         return CommandPerm.SEND_MESSAGES
@@ -39,12 +42,12 @@ class CommandRandom(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Positive values only."
 
-    def __init__(self):
-        super(CommandRandom, self).__init__()
-
 
 class CommandRoll(CommandBase):
-    command_names = ['diceroll', 'roll']
+    def __init__(self):
+        super(CommandRoll, self).__init__()
+        self.module_id = "0001_1001"
+        self.command_names = ['diceroll', 'roll']
 
     def valid_usage(self, args: []):
         if len(args) == 1:
@@ -77,12 +80,12 @@ class CommandRoll(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Start value defaults to 1."
 
-    def __init__(self):
-        super(CommandRoll, self).__init__()
-
 
 class CommandCoinflip(CommandBase):
-    command_names = ['coinflip', 'flip']
+    def __init__(self):
+        super(CommandCoinflip, self).__init__()
+        self.module_id = "0001_1002"
+        self.command_names = ['coinflip', 'flip']
 
     def valid_usage(self, args: []):
         return len(args) == 0
@@ -100,5 +103,3 @@ class CommandCoinflip(CommandBase):
     def get_action_as_string(self):
         return "Gets a random number from a start value to an end value. Start value defaults to 1."
 
-    def __init__(self):
-        super(CommandCoinflip, self).__init__()

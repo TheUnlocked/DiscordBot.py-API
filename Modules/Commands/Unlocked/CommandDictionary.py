@@ -8,7 +8,10 @@ import DiscordBot as Ulb
 
 
 class CommandDictionary(CommandBase):
-    command_names = ['definition', 'define']
+    def __init__(self):
+        super(CommandDictionary, self).__init__()
+        self.command_names = ['definition', 'define']
+        self.module_id = "0001_1005"
 
     def valid_usage(self, args: []):
         return len(args) == 1 and args[0].isalpha()
@@ -43,6 +46,3 @@ class CommandDictionary(CommandBase):
 
     def get_action_as_string(self):
         return "Gets the definition of the searched word"
-
-    def __init__(self):
-        super(CommandDictionary, self).__init__()

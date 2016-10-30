@@ -1,0 +1,27 @@
+import fml.InterfaceEvent
+import DiscordBot as Bot
+import discord.game
+import random
+import asyncio
+
+
+class SetPlaying(fml.InterfaceEvent.InterfaceOnReady):
+    def __init__(self):
+        super(SetPlaying, self).__init__()
+        self.command_names = []
+        self.module_id = "0001_2000"
+
+    async def on_ready(self):
+        rand = random.SystemRandom().choice([
+            "a piano",
+            "video games",
+            "with your kid",
+            "jenga",
+            "the Hal scene from 2001: A space odyssey",
+            "with your mind",
+            "with VR",
+            "YouTube videos",
+            "the Hamilton soundtrack",
+            ""
+        ])
+        await Bot.get_client().change_presence(game=discord.game.Game(name=rand))

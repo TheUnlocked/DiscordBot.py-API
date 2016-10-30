@@ -7,10 +7,9 @@ import datetime
 
 
 class InterfaceEvent:
-    beta = False
-
     def __init__(self):
-        pass
+        self.module_id = "0000_0000"
+        self.beta = False
 
 
 class InterfaceOnClientTick:

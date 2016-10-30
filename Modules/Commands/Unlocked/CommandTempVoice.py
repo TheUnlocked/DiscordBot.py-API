@@ -8,14 +8,17 @@ from fml.InterfaceEvent import OnVoiceStateUpdate
 
 
 class CommandTempVoice(CommandBase, OnVoiceStateUpdate):
-    command_names = ['tempvoice']
+    def __init__(self):
+        super(CommandTempVoice, self).__init__()
+        self.command_names = ['tempvoice']
+        self.module_id = "0001_0001"
 
     def valid_usage(self, args: []):
         return not len(args) == 0 if len(' '.join(args)) <= 93\
             else "The temporary voice channel name must be less than or equal to 93 characters."
 
     def get_usage_as_string(self):
-        return '`tempvoice <Channel Name>'
+        return 'tempvoice <Channel Name>'
 
     def valid_perms(self):
         return CommandPerm.CONNECT
@@ -46,6 +49,3 @@ class CommandTempVoice(CommandBase, OnVoiceStateUpdate):
         if before_vc is not None and before_vc.name.endswith(" [TEMP]"):
             if len(before_vc.voice_members) == 0:
                 await Ulb.client.delete_channel(before_vc)
-
-    def __init__(self):
-        super(CommandTempVoice, self).__init__()

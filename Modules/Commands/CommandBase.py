@@ -24,7 +24,10 @@ command_trigger = CommandTriggerType.Either
 
 
 class CommandBase(InterfaceOnMessage):
-    command_names = []
+    def __init__(self):
+        super(CommandBase, self).__init__()
+        self.command_names = []
+        self.module_id = "0000_0001"
 
     def valid_usage(self, args: []):
         raise NotImplementedError("This command has no valid usage")
@@ -73,6 +76,3 @@ class CommandBase(InterfaceOnMessage):
 
     def get_action_as_string(self):
         raise NotImplementedError("This command has no action")
-
-    def __init__(self):
-        super(CommandBase, self).__init__()

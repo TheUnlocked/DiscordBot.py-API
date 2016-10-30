@@ -4,16 +4,18 @@ import Modules.Commands.CommandPerms as CommandPerm
 
 
 class CommandParanoia(CommandBase):
-    currently_playing = False
-
-    beta = True
-    command_names = ['paranoia', 'sparanoia']
+    def __init__(self):
+        super(CommandParanoia, self).__init__()
+        self.currently_playing = False
+        self.beta = True
+        self.command_names = ['paranoia']
+        self.module_id = "0001_1003"
 
     def valid_usage(self, args: []):
         return True
 
     def get_usage_as_string(self):
-        return '`paranoia|sparanoia <_players..._>'
+        return '`paranoia <_players..._>'
 
     def valid_perms(self):
         return CommandPerm.SEND_MESSAGES
@@ -26,6 +28,3 @@ class CommandParanoia(CommandBase):
 
     def get_action_as_string(self):
         return "A game of paranoia and secret paranoia."
-
-    def __init__(self):
-        super(CommandParanoia, self).__init__()

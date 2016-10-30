@@ -11,7 +11,10 @@ from fml.InterfaceEvent import InterfaceOnClientTick
 
 
 class CommandHangman(CommandBase, InterfaceOnClientTick):
-    command_names = ['hangman', 'hg']
+    def __init__(self):
+        super(CommandHangman, self).__init__()
+        self.command_names = ['hangman', 'hg']
+        self.module_id = "0001_1006"
 
     def valid_usage(self, args: []):
         return (not len(args) == 0) and (((args[0] == "start" or args[0] == 's') and (len(args) == 1 or
@@ -145,6 +148,3 @@ class CommandHangman(CommandBase, InterfaceOnClientTick):
             await Ulb.send_message(self.hangman_channel,
                                    "No one has done anything for a while so the game of hangman has reset.")
             self.hangman_reset()
-
-    def __init__(self):
-        super(CommandHangman, self).__init__()

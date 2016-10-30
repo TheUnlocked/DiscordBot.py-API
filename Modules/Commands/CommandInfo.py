@@ -10,13 +10,16 @@ import DiscordBot as Ulb
 
 
 class CommandInfo(CommandBase):
-    command_names = ['info']
+    def __init__(self):
+        super(CommandInfo, self).__init__()
+        self.command_names = ['info']
+        self.module_id = "0000_0002"
 
     def valid_usage(self, args: []):
         return len(args) == 0
 
     def get_usage_as_string(self):
-        return '`info'
+        return 'info'
 
     def valid_perms(self):
         return CommandPerm.NONE
@@ -28,12 +31,9 @@ class CommandInfo(CommandBase):
         msg = Ulb.INFO + \
                   "\n\n" \
                   "`discord.py v0.13.0`\n" \
-                  "`DiscordBot.py-API m2`\n" \
+                  "`DiscordBot.py-API m2 beta`\n" \
                   "This bot is running on DiscordBot.py-API by Unlocked, which uses Rapptz's discord.py API wrapper. " \
                   "Both are open source and can be found on GitHub.\n" \
                   "'https://github.com/Rapptz/discord.py'\n" \
-                  "'https://github.com/TheUnlocked/DiscordBot.py-API'"
+                  "'https://github.com/TheUnlocked/DiscordBot.py-API/tree/beta'"
         await Ulb.send_message(message.channel, msg)
-
-    def __init__(self):
-        super(CommandInfo, self).__init__()

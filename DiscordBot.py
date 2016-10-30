@@ -10,16 +10,20 @@ from fnmatch import fnmatch
 from discord import Channel, Member
 import fml.EventInstantiator
 from fml.InterfaceEvent import *
+import json
+import sys
 
 """
 Change this to the name of your bot.
 """
-BOT_NAME = "UnlockedBot"
+BOT_NAME = "UnlockedBot" if len(sys.argv) == 1 or not sys.argv[1].startswith("--name:") \
+    else sys.argv[1].split("--name:")[1]
+
 
 """
 This is the info used in the info command. Modify it for your bot.
 """
-INFO = "`UnlockedBot beta m1` by Unlocked\n" \
+INFO = "`UnlockedBot m2 beta` by Unlocked\n" \
        "All modules written by Unlocked"
 
 client = discord.Client()
@@ -28,10 +32,22 @@ watch_channels = []
 shutdown_flag = False
 bot_on = False
 module_events = []
+server_rules = {}
 
 
 def get_modules():
     return module_events
+
+
+def get_module_by_id(identifier):
+    for m in get_modules():
+        if m.module_id == identifier:
+            return m
+    return None
+
+
+def get_client():
+    return client
 
 
 async def send_message(channel: Channel, msg: str, mention: Member = None):
@@ -42,8 +58,7 @@ async def send_message(channel: Channel, msg: str, mention: Member = None):
 
 
 async def run_bot():
-    global client
-    filename = os.getenv('LOCALAPPDATA') + "\\" + BOT_NAME + "\\token.txt"
+    filename = os.environ['APPDATA'] + "\\" + BOT_NAME + "\\token.txt"
     if not os.path.exists(os.path.dirname(filename)):
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         open(filename, 'w').close()
@@ -83,6 +98,21 @@ async def other_tasks():
             async_tasks.remove(task)
 
 
+async def on_client_tick():
+    for event in get_modules():
+        if isinstance(event, InterfaceOnClientTick):
+            try:
+                await event.on_client_tick()
+            except:
+                pass
+
+
+async def client_tick_start():
+    while not shutdown_flag:
+        await asyncio.sleep(0)
+        if bot_on:
+            await on_client_tick()
+
 dir_path = os.path.dirname(os.path.realpath(__file__)) + "\\Modules"
 pattern = "*.py"
 
@@ -98,21 +128,26 @@ for path, subdirs, files in os.walk(dir_path):
                     except:
                         pass
 
+print(module_events)
 fml.EventInstantiator.instantiate_events(client)
-async def on_client_tick():
-    for event in get_modules():
-        if isinstance(event, InterfaceOnClientTick):
-            try:
-                await event.on_client_tick()
-            except:
-                pass
 
 
-async def client_tick_start():
-    while not shutdown_flag:
-        await asyncio.sleep(0)
-        if bot_on:
-            await on_client_tick()
+def obtain_server_rules():
+    server_rules_json = json.loads(
+        open(os.path.dirname(os.path.realpath(__file__)) + "\\Modules\\server_rules.json", 'r+').read())
+    # for key in list(server_rules_json.keys()):
+    #     try:
+    #         server_rules[int(key)] = server_rules_json[key]
+    #         # newlist = []
+    #         # for m in server_rules_json[key]["list"]:
+    #         #     if get_module_by_id(m) is not None:
+    #         #         newlist.append(get_module_by_id(m))
+    #         # server_rules[int(key)]["list"] = newlist
+    #     except:
+    #         pass
+    return server_rules_json
+
+server_rules = obtain_server_rules()
 
 loop.run_until_complete(asyncio.gather(*[asyncio.ensure_future(run_bot()),
                                          asyncio.ensure_future(client_tick_start()),

@@ -46,6 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-#python/pycharm nonsense
 __pycache__
 .idea
+*.bat
+!DiscordBot.bat

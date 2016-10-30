@@ -1,3 +1,8 @@
+"""
+While this is not an essential file, if you do not modify or remove any part of this file, except for parts specifically intended to be modified
+"""
+
+
 class CommandPerm:
     def __init__(self, name, func):
         self.name = name
