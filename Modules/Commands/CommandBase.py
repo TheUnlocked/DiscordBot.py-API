@@ -7,20 +7,15 @@ from enum import Enum
 
 from discord import Message, Forbidden
 
-import DiscordBot as Ulb
+import DiscordBot as Bot
 import Modules.Commands.CommandPerms as CommandPerm
 from fml.InterfaceEvent import InterfaceOnMessage
 
 
 class CommandTriggerType(Enum):
-    Prefix = 1
-    Mention = 2
-    Either = 3
-
-
-# feel free to change these!
-command_prefix = '`'
-command_trigger = CommandTriggerType.Either
+    Prefix = 0
+    Mention = 1
+    Either = 2
 
 
 class CommandBase(InterfaceOnMessage):
@@ -39,6 +34,9 @@ class CommandBase(InterfaceOnMessage):
         return CommandPerm.NONE
 
     async def on_message(self, message: Message):
+        command_prefix = Bot.get_config()["commands"]["prefix"]
+        command_trigger = CommandTriggerType(Bot.get_config()["commands"]["trigger"])
+
         try:
             if command_trigger == CommandTriggerType.Prefix or command_trigger == CommandTriggerType.Either:
                 if message.content.startswith(command_prefix):
@@ -52,8 +50,8 @@ class CommandBase(InterfaceOnMessage):
                         return
 
             if command_trigger == CommandTriggerType.Mention or command_trigger == CommandTriggerType.Either:
-                if Ulb.client.user in message.mentions:
-                    spliced = "".join(message.content.split(message.server.get_member(Ulb.client.user.id).mention))\
+                if Bot.client.user in message.mentions:
+                    spliced = "".join(message.content.split(message.server.get_member(Bot.client.user.id).mention))\
                         .split(' ')
                     spliced = list(filter(None, spliced))
                     cmd = spliced[0]
@@ -64,11 +62,11 @@ class CommandBase(InterfaceOnMessage):
                         return
 
         except NotImplementedError as e:
-            await Ulb.send_message(message.channel, str(e))
+            await Bot.send_message(message.channel, str(e))
         except Forbidden:
-            await Ulb.send_message(message.channel, "This bot doesn't have the permission to do that.", message.author)
+            await Bot.send_message(message.channel, "This bot doesn't have the permission to do that.", message.author)
         except Exception as e:
-            await Ulb.send_message(message.channel, str(e), message.author)
+            await Bot.send_message(message.channel, str(e), message.author)
             traceback.print_exc()
 
     async def command_action(self, message: Message, args: []):
