@@ -57,6 +57,16 @@ class InterfaceOnMessageEdit(InterfaceEvent):
         raise NotImplementedError("This does not exist yet")
 
 
+class InterfaceOnReactionAdd(InterfaceEvent):
+    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
+        raise NotImplementedError("This does not exist yet")
+
+
+class InterfaceOnReactionRemove(InterfaceEvent):
+    async def on_reaction_remove(self, reaction: discord.Reaction, user: discord.User):
+        raise NotImplementedError("This does not exist yet")
+
+
 class InterfaceOnChannelDelete(InterfaceEvent):
     async def on_channel_delete(self, channel: discord.Channel):
         raise NotImplementedError("This does not exist yet")

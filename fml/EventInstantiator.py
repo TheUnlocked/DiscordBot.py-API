@@ -2,7 +2,7 @@
 THIS IS AN ESSENTIAL FILE. DO NOT MODIFY OR REMOVE IT UNLESS SPECIFIED BY OTHER DOCUMENTATION.
 """
 
-from discord import Client, Message, Member, User, Emoji, Channel, Server, Role
+from discord import Client, Message, Member, User, Emoji, Channel, Server, Role, Reaction
 from fml.InterfaceEvent import *
 
 
@@ -84,6 +84,28 @@ def instantiate_events(client: Client):
                      event.module_id not in Bot.server_rules[before.server.id]["list"]):
                 try:
                     await event.on_message_edit(before, after)
+                except:
+                    pass
+
+    @client.event
+    async def on_reaction_add(reaction: Reaction, user: User):
+        for event in Bot.get_modules():
+            if isinstance(event, InterfaceOnReactionAdd) and \
+                    (reaction.message.server.id not in Bot.server_rules or
+                        event.module_id not in Bot.server_rules[reaction.message.server.id]["list"]):
+                try:
+                    await event.on_reaction_add(reaction, user)
+                except:
+                    pass
+
+    @client.event
+    async def on_reaction_remove(reaction: Reaction, user: User):
+        for event in Bot.get_modules():
+            if isinstance(event, InterfaceOnReactionRemove) and \
+                    (reaction.message.server.id not in Bot.server_rules or
+                        event.module_id not in Bot.server_rules[reaction.message.server.id]["list"]):
+                try:
+                    await event.on_reaction_remove(reaction, user)
                 except:
                     pass
 
