@@ -27,23 +27,35 @@ shutdown_flag = False
 bot_on = False
 module_events = []
 server_rules = {}
+default_config = dict()
+
+
+def get_default_config():
+    return default_config
+
+
+def add_default_config(name: str, config: dict):
+    if name not in default_config:
+        for key in config:
+            default_config[name] = dict()
+            default_config[name][key] = config[key]
+
+
+def init_config():
+    default_config["bot-info"] = ""
+    modules_config = dict()
+    modules_config["allon"] = True
+    modules_config["include-system-mods"] = True
+    modules_config["whitelist"] = []
+    modules_config["blacklist"] = []
+    add_default_config("modules", modules_config)
 
 
 loc = os.environ['APPDATA'] + "\\" + BOT_NAME + "\\config.json"
 if not os.path.exists(os.path.dirname(loc)) or not os.path.exists(loc):
-    default = dict()
-    default["modules"] = dict()
-    default["modules"]["allon"] = True
-    default["modules"]["include-system-mods"] = True
-    default["modules"]["whitelist"] = []
-    default["modules"]["blacklist"] = []
-    default["commands"] = dict()
-    default["commands"]["trigger"] = 2
-    default["commands"]["prefix"] = '`'
-    default["bot-info"] = ""
     os.makedirs(os.path.dirname(loc), exist_ok=True)
     f = open(loc, 'w')
-    f.write(json.dumps(default, indent=4))
+    f.write(json.dumps(get_default_config(), indent=4))
     f.close()
 f = open(loc, 'r')
 config = json.loads(f.read())
@@ -181,7 +193,16 @@ async def client_tick_start():
             await on_client_tick()
 
 
-INFO = get_config()["bot-info"]
+def verify_config(current_config=get_config(), default_config=get_default_config()):
+    for key in default_config:
+        if key not in current_config or not isinstance(current_config[key], type(default_config[key])):
+            current_config[key] = default_config[key]
+        elif isinstance(default_config[key], dict):
+            verify_config(current_config[key], default_config[key])
+
+f = open(loc, 'w')
+f.write(json.dumps(get_config(), indent=4))
+f.close()
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) + "\\Modules"
 pattern = "*.py"
@@ -207,6 +228,11 @@ for path, subdirs, files in os.walk(dir_path):
                         pass
 
 print(module_events)
+
+init_config()
+verify_config()
+INFO = get_config()["bot-info"]
+
 fml.EventInstantiator.instantiate_events(client)
 
 loop.run_until_complete(asyncio.gather(*[asyncio.ensure_future(run_bot()),

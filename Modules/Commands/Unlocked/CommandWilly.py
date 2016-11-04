@@ -26,7 +26,8 @@ class CommandHelloWilly(CommandBase):
         return 'Says hello to Willy'
 
     async def command_action(self, message: Message, args: []):
-        available = random.Random(int(time.time() / 800)).choice([True, False])
+        random.seed(int(time.time() / 800))
+        available = random.choice([True, False])
         msg = "#######\n" \
               "##• # •##\n" \
               "#)-------(#\n" \
