@@ -45,7 +45,7 @@ class CommandHelp(CommandBase):
             await Bot.send_message(message.channel, printout, message.author)
         if len(args) == 1:
             for command in commands:
-                if args[0] in command.command_names:
+                if args[0].lower() in command.command_names:
                     printout = "\n`Found help for '" + args[0] + "'`\nUsage: " + command.get_usage_as_string() + '\n' + \
                                command.get_action_as_string()
                     await Bot.send_message(message.channel, printout, message.author)
